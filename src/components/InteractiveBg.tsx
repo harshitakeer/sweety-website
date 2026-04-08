@@ -2,75 +2,56 @@
 
 import { useEffect, useRef, useCallback } from "react";
 
-interface Shape {
+interface CodeParticle {
   x: number;
   y: number;
   vx: number;
   vy: number;
+  text: string;
   size: number;
+  opacity: number;
   rotation: number;
   rotationSpeed: number;
-  type: "circle" | "star" | "heart" | "ring" | "dot";
   color: string;
-  opacity: number;
 }
 
-const COLORS = [
-  "#FF6B9D",  // pink
-  "#FFD4E3",  // pink light
-  "#1B2A4A",  // navy
-  "#E0D4F7",  // lavender
-  "#FFE566",  // yellow
-  "#C8F7DC",  // mint
-  "#38bdf8",  // blue
+const CODE_SYMBOLS = [
+  "</>", "{ }", "=>", "( )", "[ ]", "&&", "||",
+  "const", "let", "fn", "async", "await", "return",
+  "//", "/*", "*/", "===", "!=", "::", "->",
+  "import", "export", "null", "true", "0x",
+  "<div>", "</a>", "npm", "git", "ssh",
+  "useState", "props", "jsx", ".tsx", ".py",
+  "def", "class", "self", "init", "main()",
 ];
 
-function drawStar(ctx: CanvasRenderingContext2D, cx: number, cy: number, r: number) {
-  ctx.beginPath();
-  for (let i = 0; i < 5; i++) {
-    const angle = (i * 4 * Math.PI) / 5 - Math.PI / 2;
-    const method = i === 0 ? "moveTo" : "lineTo";
-    ctx[method](cx + r * Math.cos(angle), cy + r * Math.sin(angle));
-  }
-  ctx.closePath();
-  ctx.fill();
-}
-
-function drawHeart(ctx: CanvasRenderingContext2D, cx: number, cy: number, size: number) {
-  const s = size * 0.5;
-  ctx.beginPath();
-  ctx.moveTo(cx, cy + s * 0.3);
-  ctx.bezierCurveTo(cx - s, cy - s * 0.5, cx - s * 0.5, cy - s, cx, cy - s * 0.4);
-  ctx.bezierCurveTo(cx + s * 0.5, cy - s, cx + s, cy - s * 0.5, cx, cy + s * 0.3);
-  ctx.fill();
-}
+const COLORS = ["#FF6B9D", "#1B2A4A", "#a78bfa", "#38bdf8"];
 
 export default function InteractiveBg() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: -1000, y: -1000 });
-  const shapesRef = useRef<Shape[]>([]);
+  const particlesRef = useRef<CodeParticle[]>([]);
   const animRef = useRef<number>(0);
 
-  const initShapes = useCallback(() => {
-    const shapes: Shape[] = [];
-    const count = Math.min(45, Math.floor(window.innerWidth / 35));
-    const types: Shape["type"][] = ["circle", "star", "heart", "ring", "dot"];
+  const initParticles = useCallback(() => {
+    const particles: CodeParticle[] = [];
+    const count = Math.min(40, Math.floor(window.innerWidth / 40));
 
     for (let i = 0; i < count; i++) {
-      shapes.push({
+      particles.push({
         x: Math.random() * window.innerWidth,
         y: Math.random() * window.innerHeight,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        size: Math.random() * 14 + 6,
-        rotation: Math.random() * Math.PI * 2,
-        rotationSpeed: (Math.random() - 0.5) * 0.02,
-        type: types[Math.floor(Math.random() * types.length)],
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        text: CODE_SYMBOLS[Math.floor(Math.random() * CODE_SYMBOLS.length)],
+        size: Math.random() * 5 + 10,
+        opacity: Math.random() * 0.08 + 0.03,
+        rotation: (Math.random() - 0.5) * 0.3,
+        rotationSpeed: (Math.random() - 0.5) * 0.002,
         color: COLORS[Math.floor(Math.random() * COLORS.length)],
-        opacity: Math.random() * 0.25 + 0.08,
       });
     }
-    shapesRef.current = shapes;
+    particlesRef.current = particles;
   }, []);
 
   useEffect(() => {
@@ -82,7 +63,7 @@ export default function InteractiveBg() {
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      if (shapesRef.current.length === 0) initShapes();
+      if (particlesRef.current.length === 0) initParticles();
     };
 
     const handleMouse = (e: MouseEvent) => {
@@ -95,67 +76,45 @@ export default function InteractiveBg() {
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const shapes = shapesRef.current;
+      const particles = particlesRef.current;
       const mouse = mouseRef.current;
 
-      shapes.forEach((s) => {
-        // Mouse interaction — gentle push away
-        const dx = mouse.x - s.x;
-        const dy = mouse.y - s.y;
+      particles.forEach((p) => {
+        const dx = mouse.x - p.x;
+        const dy = mouse.y - p.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
         if (dist < 180) {
           const force = (180 - dist) / 180;
-          s.vx -= (dx / dist) * force * 0.08;
-          s.vy -= (dy / dist) * force * 0.08;
+          p.vx -= (dx / dist) * force * 0.05;
+          p.vy -= (dy / dist) * force * 0.05;
+          // Brighten near cursor
+          p.opacity = Math.min(0.2, p.opacity + force * 0.01);
+        } else {
+          // Fade back
+          p.opacity += (0.05 - p.opacity) * 0.01;
         }
 
-        // Update
-        s.x += s.vx;
-        s.y += s.vy;
-        s.rotation += s.rotationSpeed;
-        s.vx *= 0.995;
-        s.vy *= 0.995;
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rotation += p.rotationSpeed;
+        p.vx *= 0.997;
+        p.vy *= 0.997;
 
-        // Wrap edges
-        if (s.x < -20) s.x = canvas.width + 20;
-        if (s.x > canvas.width + 20) s.x = -20;
-        if (s.y < -20) s.y = canvas.height + 20;
-        if (s.y > canvas.height + 20) s.y = -20;
+        if (p.x < -60) p.x = canvas.width + 60;
+        if (p.x > canvas.width + 60) p.x = -60;
+        if (p.y < -30) p.y = canvas.height + 30;
+        if (p.y > canvas.height + 30) p.y = -30;
 
-        // Draw
         ctx.save();
-        ctx.translate(s.x, s.y);
-        ctx.rotate(s.rotation);
-        ctx.globalAlpha = s.opacity;
-        ctx.fillStyle = s.color;
-        ctx.strokeStyle = s.color;
-
-        switch (s.type) {
-          case "circle":
-            ctx.beginPath();
-            ctx.arc(0, 0, s.size, 0, Math.PI * 2);
-            ctx.fill();
-            break;
-          case "ring":
-            ctx.beginPath();
-            ctx.arc(0, 0, s.size, 0, Math.PI * 2);
-            ctx.lineWidth = 2;
-            ctx.stroke();
-            break;
-          case "dot":
-            ctx.beginPath();
-            ctx.arc(0, 0, s.size * 0.4, 0, Math.PI * 2);
-            ctx.fill();
-            break;
-          case "star":
-            drawStar(ctx, 0, 0, s.size);
-            break;
-          case "heart":
-            drawHeart(ctx, 0, 0, s.size);
-            break;
-        }
-
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation);
+        ctx.globalAlpha = p.opacity;
+        ctx.font = `${p.size}px "JetBrains Mono", "SF Mono", "Fira Code", monospace`;
+        ctx.fillStyle = p.color;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(p.text, 0, 0);
         ctx.restore();
       });
 
@@ -169,17 +128,9 @@ export default function InteractiveBg() {
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", handleMouse);
     };
-  }, [initShapes]);
+  }, [initParticles]);
 
   return (
-    <canvas
-      ref={canvasRef}
-      style={{
-        position: "absolute",
-        inset: 0,
-        zIndex: 0,
-        pointerEvents: "none",
-      }}
-    />
+    <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none" }} />
   );
 }

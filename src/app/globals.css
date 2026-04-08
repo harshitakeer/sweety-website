@@ -1,48 +1,8 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-cream: #FFF8F0;
-  --color-pink: #FF6B9D;
-  --color-pink-light: #FFD4E3;
-  --color-pink-soft: #FFF0F5;
-  --color-navy: #1B2A4A;
-  --color-navy-light: #2D4470;
-  --color-navy-soft: #E8ECF4;
-  --color-peach: #FFCBA4;
-  --color-lavender: #E0D4F7;
-  --color-mint: #C8F7DC;
-  --color-yellow: #FFE566;
-  --color-muted: #8B8FA3;
-
-  --font-sans: var(--font-nunito), system-ui, sans-serif;
-  --font-display: var(--font-gaegu), cursive;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), monospace;
-}
-
-@keyframes wiggle {
-  0%, 100% { transform: rotate(-2deg); }
-  50% { transform: rotate(2deg); }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes wave {
-  0%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(14deg); }
-  75% { transform: rotate(-8deg); }
-}
-
-@keyframes bounce-soft {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
 }
 
 * {
@@ -59,56 +19,14 @@ body {
   background: #FFF8F0;
   color: #1B2A4A;
   overflow-x: hidden;
-  font-family: var(--font-sans);
 }
 
 ::selection {
-  background: #FFD4E3;
+  background: rgba(255, 107, 157, 0.15);
   color: #1B2A4A;
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #FFF8F0;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #FFD4E3;
-  border-radius: 4px;
-}
-
-.hand-drawn-border {
-  border: 2.5px solid #1B2A4A;
-  border-radius: 12px;
-  box-shadow: 3px 3px 0 #1B2A4A;
-}
-
-.hand-drawn-border:hover {
-  box-shadow: 5px 5px 0 #FF6B9D;
-  transform: translate(-2px, -2px);
-  transition: all 0.2s ease;
-}
-
-.doodle-underline {
-  text-decoration: underline;
-  text-decoration-color: #FF6B9D;
-  text-decoration-style: wavy;
-  text-underline-offset: 6px;
-  text-decoration-thickness: 2px;
-}
-
-.sticker {
-  display: inline-block;
-  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.sticker:hover {
-  transform: scale(1.15) rotate(5deg);
-}
-
-@media (max-width: 768px) {
-  html { font-size: 14px; }
+a:hover {
+  text-decoration-color: #FF6B9D !important;
+  color: #FF6B9D !important;
 }

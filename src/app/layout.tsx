@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { DM_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const dmSans = DM_Sans({
+  variable: "--font-dm",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const jetbrains = JetBrains_Mono({
@@ -13,15 +13,9 @@ const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
 });
 
-const space = Space_Grotesk({
-  variable: "--font-space",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
 export const metadata: Metadata = {
-  title: "harshita — developer, designer, builder",
-  description: "harshita's portfolio — developer, designer, student, and builder crafting digital experiences.",
+  title: "harshita",
+  description: "developer, designer, builder.",
   icons: {
     icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>",
   },
@@ -33,11 +27,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${jetbrains.variable} ${space.variable} antialiased`}
-    >
-      <body style={{ minHeight: "100vh", background: "#FFF8F0", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>{children}</body>
+    <html lang="en" className={`${dmSans.variable} ${jetbrains.variable} antialiased`}>
+      <body style={{ minHeight: "100vh", background: "#FFF8F0", fontFamily: "var(--font-dm), system-ui, sans-serif" }}>
+        {children}
+      </body>
     </html>
   );
 }
