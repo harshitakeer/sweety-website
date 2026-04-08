@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Smiley, Star } from "./Doodles";
 import SubtleBg from "./SubtleBg";
 
 const skills = [
@@ -24,13 +23,12 @@ export default function About() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12, marginBottom: 48 }}
+          style={{ marginBottom: 48 }}
         >
-          <Star size={28} />
-          <h2 className="font-display" style={{ fontSize: "clamp(2rem, 5vw, 3rem)", fontWeight: 700, color: "#1B2A4A", textAlign: "center" }}>
-            about me
+          <p style={{ fontSize: 14, fontWeight: 600, color: "#FF6B9D", marginBottom: 8, fontFamily: "var(--font-jetbrains), monospace", textAlign: "center" }}>01 — about</p>
+          <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.5rem)", fontWeight: 700, color: "#1B2A4A", textAlign: "center", fontFamily: "var(--font-space), system-ui, sans-serif", letterSpacing: "-0.02em" }}>
+            a bit about me
           </h2>
-          <Smiley size={32} />
         </motion.div>
 
         {/* Bio */}
@@ -38,26 +36,22 @@ export default function About() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          style={{ textAlign: "center", marginBottom: 56 }}
+          style={{ textAlign: "center", marginBottom: 56, maxWidth: 600, marginLeft: "auto", marginRight: "auto" }}
         >
-          <p style={{ color: "rgba(27,42,74,0.7)", lineHeight: 1.8, fontSize: 18, marginBottom: 16 }}>
-            i&apos;m a{" "}
-            <span style={{ fontWeight: 700, color: "#1B2A4A" }}>developer, designer, and builder</span>{" "}
-            who loves making things for the internet! i care deeply about the
-            sweet spot between{" "}
-            <span style={{ fontWeight: 700, color: "#FF6B9D" }}>beautiful design</span> and{" "}
-            <span style={{ fontWeight: 700, color: "#1B2A4A" }}>solid engineering</span> ☺
+          <p style={{ color: "rgba(27,42,74,0.7)", lineHeight: 1.8, fontSize: 17, marginBottom: 16 }}>
+            i&apos;m a <strong style={{ color: "#1B2A4A" }}>developer, designer, and builder</strong> passionate
+            about creating products that sit at the intersection of{" "}
+            <strong style={{ color: "#FF6B9D" }}>thoughtful design</strong> and{" "}
+            <strong style={{ color: "#1B2A4A" }}>robust engineering</strong>.
           </p>
-          <p style={{ color: "rgba(27,42,74,0.6)", lineHeight: 1.8, marginBottom: 16 }}>
+          <p style={{ color: "rgba(27,42,74,0.55)", lineHeight: 1.8, marginBottom: 16 }}>
             currently a student exploring the full spectrum of tech — from
-            crafting pixel-perfect interfaces to building scalable backends.
-            the best products come from obsessing over both the details and the
-            architecture!
+            pixel-perfect interfaces to scalable backends. i believe the best
+            products come from sweating both the details and the architecture.
           </p>
-          <p style={{ color: "rgba(27,42,74,0.6)", lineHeight: 1.8 }}>
+          <p style={{ color: "rgba(27,42,74,0.55)", lineHeight: 1.8 }}>
             when i&apos;m not coding, you&apos;ll find me designing in figma,
-            exploring new frameworks, or working on side projects that probably
-            should have stayed as ideas ☻
+            exploring new frameworks, or shipping side projects.
           </p>
         </motion.div>
 
@@ -69,16 +63,15 @@ export default function About() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: groupIdx * 0.1 }}
+              transition={{ delay: groupIdx * 0.08 }}
               style={{
                 padding: 24,
                 borderRadius: 16,
-                border: `2px solid ${group.border}`,
-                background: group.color + "40",
-                boxShadow: `3px 3px 0 ${group.border}`,
+                border: `1.5px solid ${group.border}30`,
+                background: group.color + "25",
               }}
             >
-              <h3 style={{ fontSize: 11, fontWeight: 700, color: "#1B2A4A", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 16 }}>
+              <h3 style={{ fontSize: 11, fontWeight: 700, color: "rgba(27,42,74,0.4)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 14, fontFamily: "var(--font-jetbrains), monospace" }}>
                 {group.category}
               </h3>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
@@ -87,12 +80,11 @@ export default function About() {
                     key={skill}
                     style={{
                       fontSize: 13,
-                      fontWeight: 700,
+                      fontWeight: 600,
                       padding: "6px 14px",
-                      borderRadius: 9999,
-                      background: "white",
-                      color: "rgba(27,42,74,0.8)",
-                      border: "1px solid rgba(27,42,74,0.1)",
+                      borderRadius: 8,
+                      background: "rgba(255,255,255,0.7)",
+                      color: "rgba(27,42,74,0.7)",
                     }}
                   >
                     {skill}

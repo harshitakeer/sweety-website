@@ -8,48 +8,27 @@ import Contact from "@/components/Contact";
 
 export default function Home() {
   return (
-    <div className="w-full min-h-screen">
+    <div style={{ width: "100%", minHeight: "100vh" }}>
       <Navbar />
 
-      <main className="w-full">
+      <main style={{ width: "100%" }}>
         <Hero />
 
-        {/* Wavy divider */}
-        <div className="w-full overflow-hidden">
-          <svg viewBox="0 0 1200 40" className="w-full h-8" preserveAspectRatio="none">
-            <path
-              d="M0 20 Q 150 0, 300 20 T 600 20 T 900 20 T 1200 20"
-              fill="none"
-              stroke="#FFD4E3"
-              strokeWidth="2.5"
-            />
-          </svg>
+        {/* Clean divider */}
+        <div style={{ maxWidth: 860, margin: "0 auto", padding: "0 24px" }}>
+          <div style={{ height: 1, background: "linear-gradient(90deg, transparent, rgba(255,107,157,0.15), transparent)" }} />
         </div>
 
         <About />
 
-        <div className="w-full overflow-hidden">
-          <svg viewBox="0 0 1200 40" className="w-full h-8" preserveAspectRatio="none">
-            <path
-              d="M0 20 Q 150 40, 300 20 T 600 20 T 900 20 T 1200 20"
-              fill="none"
-              stroke="#E0D4F7"
-              strokeWidth="2.5"
-            />
-          </svg>
+        <div style={{ maxWidth: 860, margin: "0 auto", padding: "0 24px" }}>
+          <div style={{ height: 1, background: "linear-gradient(90deg, transparent, rgba(167,139,250,0.15), transparent)" }} />
         </div>
 
         <Projects />
 
-        <div className="w-full overflow-hidden">
-          <svg viewBox="0 0 1200 40" className="w-full h-8" preserveAspectRatio="none">
-            <path
-              d="M0 20 Q 150 0, 300 20 T 600 20 T 900 20 T 1200 20"
-              fill="none"
-              stroke="#C8F7DC"
-              strokeWidth="2.5"
-            />
-          </svg>
+        <div style={{ maxWidth: 860, margin: "0 auto", padding: "0 24px" }}>
+          <div style={{ height: 1, background: "linear-gradient(90deg, transparent, rgba(52,211,153,0.15), transparent)" }} />
         </div>
 
         <Contact />

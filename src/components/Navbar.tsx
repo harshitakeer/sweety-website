@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import MagneticButton from "./MagneticButton";
-import { Smiley } from "./Doodles";
 
 const navItems = [
   { name: "about", href: "#about" },
@@ -34,22 +33,21 @@ export default function Navbar() {
           right: 0,
           zIndex: 50,
           padding: scrolled ? "12px 0" : "20px 0",
-          background: scrolled ? "rgba(255,248,240,0.8)" : "transparent",
+          background: scrolled ? "rgba(255,248,240,0.85)" : "transparent",
           backdropFilter: scrolled ? "blur(20px)" : "none",
-          borderBottom: scrolled ? "2px solid #FFD4E3" : "none",
-          transition: "all 0.5s",
+          borderBottom: scrolled ? "1px solid rgba(27,42,74,0.06)" : "none",
+          transition: "all 0.4s",
         }}
       >
         <div style={{ maxWidth: 860, marginLeft: "auto", marginRight: "auto", width: "100%", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <MagneticButton>
-            <a href="#" className="font-display" style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 22, fontWeight: 700, color: "#1B2A4A", textDecoration: "none" }}>
-              harshita
-              <Smiley size={24} />
+            <a href="#" style={{ fontSize: 18, fontWeight: 700, color: "#1B2A4A", textDecoration: "none", fontFamily: "var(--font-space), system-ui, sans-serif", letterSpacing: "-0.02em" }}>
+              harshita<span style={{ color: "#FF6B9D" }}>.</span>
             </a>
           </MagneticButton>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex" style={{ alignItems: "center", gap: 8 }}>
+          <div className="hidden md:flex" style={{ alignItems: "center", gap: 4 }}>
             {navItems.map((item, i) => (
               <MagneticButton key={item.name}>
                 <motion.a
@@ -57,7 +55,7 @@ export default function Navbar() {
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * i + 0.2 }}
-                  style={{ padding: "8px 18px", borderRadius: 9999, fontSize: 14, fontWeight: 700, color: "rgba(27,42,74,0.6)", textDecoration: "none", transition: "all 0.2s" }}
+                  style={{ padding: "8px 18px", borderRadius: 8, fontSize: 14, fontWeight: 500, color: "rgba(27,42,74,0.6)", textDecoration: "none", transition: "all 0.2s" }}
                 >
                   {item.name}
                 </motion.a>
@@ -71,14 +69,12 @@ export default function Navbar() {
                 transition={{ delay: 0.6 }}
                 style={{
                   marginLeft: 8,
-                  padding: "8px 22px",
-                  borderRadius: 9999,
+                  padding: "8px 20px",
+                  borderRadius: 8,
                   fontSize: 14,
-                  fontWeight: 700,
+                  fontWeight: 600,
                   background: "#1B2A4A",
                   color: "#FFF8F0",
-                  border: "2px solid #1B2A4A",
-                  boxShadow: "2px 2px 0 #FF6B9D",
                   textDecoration: "none",
                   transition: "all 0.2s",
                 }}
@@ -92,11 +88,11 @@ export default function Navbar() {
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="md:hidden"
-            style={{ display: "flex", flexDirection: "column", gap: 6, padding: 8, background: "none", border: "none" }}
+            style={{ display: "flex", flexDirection: "column", gap: 5, padding: 8, background: "none", border: "none" }}
           >
-            <motion.span animate={mobileOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }} style={{ display: "block", width: 24, height: 2.5, background: "#1B2A4A", borderRadius: 2 }} />
-            <motion.span animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }} style={{ display: "block", width: 24, height: 2.5, background: "#1B2A4A", borderRadius: 2 }} />
-            <motion.span animate={mobileOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }} style={{ display: "block", width: 24, height: 2.5, background: "#1B2A4A", borderRadius: 2 }} />
+            <motion.span animate={mobileOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }} style={{ display: "block", width: 22, height: 2, background: "#1B2A4A", borderRadius: 2 }} />
+            <motion.span animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }} style={{ display: "block", width: 22, height: 2, background: "#1B2A4A", borderRadius: 2 }} />
+            <motion.span animate={mobileOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }} style={{ display: "block", width: 22, height: 2, background: "#1B2A4A", borderRadius: 2 }} />
           </button>
         </div>
       </motion.nav>
@@ -119,13 +115,11 @@ export default function Navbar() {
                 exit={{ opacity: 0, y: 20 }}
                 transition={{ delay: 0.1 * i }}
                 onClick={() => setMobileOpen(false)}
-                className="font-display"
-                style={{ fontSize: 36, fontWeight: 700, color: "#1B2A4A", textDecoration: "none" }}
+                style={{ fontSize: 32, fontWeight: 700, color: "#1B2A4A", textDecoration: "none", fontFamily: "var(--font-space)" }}
               >
                 {item.name}
               </motion.a>
             ))}
-            <Smiley size={50} />
           </motion.div>
         )}
       </AnimatePresence>

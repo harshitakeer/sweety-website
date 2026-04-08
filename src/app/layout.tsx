@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Nunito, JetBrains_Mono, Gaegu } from "next/font/google";
+import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const nunito = Nunito({
-  variable: "--font-nunito",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 const jetbrains = JetBrains_Mono({
@@ -13,17 +13,17 @@ const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
 });
 
-const gaegu = Gaegu({
-  variable: "--font-gaegu",
+const space = Space_Grotesk({
+  variable: "--font-space",
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "harshita :)",
-  description: "harshita's little corner of the internet ~ developer, designer, student, builder",
+  title: "harshita — developer, designer, builder",
+  description: "harshita's portfolio — developer, designer, student, and builder crafting digital experiences.",
   icons: {
-    icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☺</text></svg>",
+    icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>",
   },
 };
 
@@ -35,9 +35,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${nunito.variable} ${jetbrains.variable} ${gaegu.variable} antialiased`}
+      className={`${inter.variable} ${jetbrains.variable} ${space.variable} antialiased`}
     >
-      <body className="min-h-screen bg-cream font-sans">{children}</body>
+      <body style={{ minHeight: "100vh", background: "#FFF8F0", fontFamily: "var(--font-inter), system-ui, sans-serif" }}>{children}</body>
     </html>
   );
 }
