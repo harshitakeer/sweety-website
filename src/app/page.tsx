@@ -79,7 +79,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             style={{ fontSize: 28, fontWeight: 700, color: "#1B2A4A", marginBottom: 4 }}
           >
-            harshita&#8202;☺
+            harshita&#8202;◡̈
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
