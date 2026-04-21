@@ -7,8 +7,8 @@ const CodeMatrixBg = dynamic(() => import("@/components/CodeMatrixBg"), { ssr: f
 
 const experience = [
   { name: "dharma", role: "co-founder", desc: "building something i genuinely believe in", link: "https://github.com/vikranthkeerthipati/dharma" },
-  { name: "uw husky satellite lab", role: "software engineer", desc: "writing the code that helps satellites see stars", link: "https://github.com/harshitakeer/lost-evals-2" },
-  { name: "california business technology", role: "security engineer", desc: "california's first cybersecurity youth apprentice", link: "" },
+  { name: "uw husky satellite lab", role: "software engineer", desc: "writing the code that helps satellites see stars", link: "https://huskysat.org/" },
+  { name: "california business technology", role: "security engineer", desc: "california's first cybersecurity youth apprentice", link: "https://cbt.io/" },
   { name: "cisco", role: "extern", desc: "built an autonomous wheelchair prototype at their ai hackathon", link: "https://www.cisco.com" },
 ];
 
@@ -17,7 +17,7 @@ const projects = [
   { name: "fitcheck", desc: "virtual try-on app — diffusion models + 50 user interviews to get it right", link: "", github: "" },
   { name: "bump", desc: "making it easier to stay connected with the people around you", link: "https://github.com/harshitakeer/bumpd", github: "https://github.com/harshitakeer/bumpd" },
   { name: "findar", desc: "lost your keys? lidar + yolo to track every object in your space", link: "https://github.com/harshitakeer/findar", github: "https://github.com/harshitakeer/findar" },
-  { name: "nenu apparel", desc: "started a clothing brand, shipped 6 drops, got 50+ pre-orders", link: "https://github.com/harshitakeer/nenuprelaunch" },
+  { name: "nenu apparel", desc: "started a clothing brand, shipped 6 drops, got 50+ pre-orders", link: "https://nenuprelaunch.vercel.app/" },
 ];
 
 const links = [
