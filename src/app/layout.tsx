@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   title: "harshita",
   description: "developer, designer, builder.",
   icons: {
-    icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50' y='50' text-anchor='middle' dominant-baseline='central' font-size='48' font-weight='500' font-family='Helvetica, Arial, sans-serif' fill='%23FF6B9D'>hk ☺</text></svg>",
+    icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50' y='50' text-anchor='middle' dominant-baseline='central' font-size='48' font-weight='500' font-family='Helvetica, Arial, sans-serif' fill='%23FF6B9D'>hk ◡̈</text></svg>",
   },
 };
 
