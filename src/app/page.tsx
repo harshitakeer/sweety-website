@@ -6,18 +6,18 @@ import { motion } from "framer-motion";
 const CodeMatrixBg = dynamic(() => import("@/components/CodeMatrixBg"), { ssr: false });
 
 const experience = [
-  { name: "dharma", role: "co-founder", desc: "building something i genuinely believe in", link: "#" },
-  { name: "uw husky satellite lab", role: "software engineer", desc: "writing the code that helps satellites see stars", link: "#" },
-  { name: "california business technology", role: "security engineer", desc: "california's first cybersecurity youth apprentice", link: "#" },
-  { name: "cisco", role: "extern", desc: "built an autonomous wheelchair prototype at their ai hackathon", link: "#" },
+  { name: "dharma", role: "co-founder", desc: "building something i genuinely believe in", link: "https://github.com/vikranthkeerthipati/dharma" },
+  { name: "uw husky satellite lab", role: "software engineer", desc: "writing the code that helps satellites see stars", link: "https://github.com/harshitakeer/lost-evals-2" },
+  { name: "california business technology", role: "security engineer", desc: "california's first cybersecurity youth apprentice", link: "" },
+  { name: "cisco", role: "extern", desc: "built an autonomous wheelchair prototype at their ai hackathon", link: "https://www.cisco.com" },
 ];
 
 const projects = [
-  { name: "gpt transformer", desc: "wanted to understand how LLMs actually work, so i built one from scratch", link: "#", github: "#" },
-  { name: "fitcheck", desc: "virtual try-on app — diffusion models + 50 user interviews to get it right", link: "#", github: "#" },
-  { name: "bump", desc: "making it easier to stay connected with the people around you", link: "#", github: "#" },
-  { name: "findar", desc: "lost your keys? lidar + yolo to track every object in your space", link: "#", github: "#" },
-  { name: "nenu apparel", desc: "started a clothing brand, shipped 6 drops, got 50+ pre-orders", link: "#" },
+  { name: "gpt transformer", desc: "wanted to understand how LLMs actually work, so i built one from scratch", link: "https://github.com/harshitakeer/gpt_transformer", github: "https://github.com/harshitakeer/gpt_transformer" },
+  { name: "fitcheck", desc: "virtual try-on app — diffusion models + 50 user interviews to get it right", link: "", github: "" },
+  { name: "bump", desc: "making it easier to stay connected with the people around you", link: "https://github.com/harshitakeer/bumpd", github: "https://github.com/harshitakeer/bumpd" },
+  { name: "findar", desc: "lost your keys? lidar + yolo to track every object in your space", link: "https://github.com/harshitakeer/findar", github: "https://github.com/harshitakeer/findar" },
+  { name: "nenu apparel", desc: "started a clothing brand, shipped 6 drops, got 50+ pre-orders", link: "https://github.com/harshitakeer/nenuprelaunch" },
 ];
 
 const links = [
@@ -50,6 +50,9 @@ function Label({ children }: { children: React.ReactNode }) {
 }
 
 function Link({ href, children }: { href: string; children: React.ReactNode }) {
+  if (!href) {
+    return <span style={{ color: "#1B2A4A", fontWeight: 500 }}>{children}</span>;
+  }
   return (
     <a
       href={href}
@@ -93,7 +96,7 @@ export default function Home() {
           <Label>today</Label>
           <p style={{ fontSize: 15, color: "rgba(27,42,74,0.88)", lineHeight: 1.8 }}>
             studying cs at the <strong style={{ color: "#1B2A4A", fontWeight: 600 }}>university of washington</strong>.
-            i care a lot about building things that actually help people — right now that looks like <Link href="#">dharma</Link>,
+            i care a lot about building things that actually help people — right now that looks like <Link href="https://github.com/vikranthkeerthipati/dharma">dharma</Link>,
             an ios app bringing spirituality into the modern world. i get excited about ml, systems, and
             anything where i can go from idea to shipped product.
           </p>
