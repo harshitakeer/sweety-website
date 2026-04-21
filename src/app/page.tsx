@@ -14,7 +14,7 @@ const experience = [
 
 const projects = [
   { name: "gpt transformer", desc: "wanted to understand how LLMs actually work, so i built one from scratch", link: "https://github.com/harshitakeer/gpt_transformer", github: "https://github.com/harshitakeer/gpt_transformer" },
-  { name: "fitcheck", desc: "virtual try-on app — diffusion models + 50 user interviews to get it right", link: "", github: "" },
+  { name: "fitcheck", desc: "virtual try-on app — diffusion models + 50 user interviews to get it right", link: "https://github.com/vikranthkeerthipati/fitsai", github: "https://github.com/vikranthkeerthipati/fitsai" },
   { name: "bump", desc: "making it easier to stay connected with the people around you", link: "https://github.com/harshitakeer/bumpd", github: "https://github.com/harshitakeer/bumpd" },
   { name: "findar", desc: "lost your keys? lidar + yolo to track every object in your space", link: "https://github.com/harshitakeer/findar", github: "https://github.com/harshitakeer/findar" },
   { name: "nenu apparel", desc: "started a clothing brand, shipped 6 drops, got 50+ pre-orders", link: "https://nenuprelaunch.vercel.app/" },
