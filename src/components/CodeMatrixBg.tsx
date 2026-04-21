@@ -53,7 +53,6 @@ export default function CodeMatrixBg() {
   const animRef = useRef<number>(0);
   const linesRef = useRef<FloatingLine[]>([]);
   const binaryRef = useRef<{ char: string; x: number; y: number }[]>([]);
-  const rippleRef = useRef<{ x: number; y: number; radius: number; alpha: number }[]>([]);
   const timeRef = useRef(0);
 
   useEffect(() => {
@@ -102,7 +101,7 @@ export default function CodeMatrixBg() {
           x: Math.random() * canvas.width * 1.2 - canvas.width * 0.1,
           y: i * 22 + Math.random() * 8,
           speed: 0.06 + Math.random() * 0.12,
-          opacity: 0.07 + Math.random() * 0.04,
+          opacity: 0.1 + Math.random() * 0.05,
           size: 12 + Math.random() * 2,
           baseColor: "rgba(27, 42, 74, 0.1)",
           highlightColor: highlightColors[Math.floor(Math.random() * highlightColors.length)],
@@ -115,19 +114,9 @@ export default function CodeMatrixBg() {
       mouseRef.current = { x: e.clientX, y: e.clientY + window.scrollY };
     };
 
-    const handleClick = (e: MouseEvent) => {
-      rippleRef.current.push({
-        x: e.clientX,
-        y: e.clientY + window.scrollY,
-        radius: 0,
-        alpha: 0.5,
-      });
-    };
-
     init();
     window.addEventListener("resize", init);
     window.addEventListener("mousemove", handleMouse);
-    window.addEventListener("click", handleClick);
 
     const draw = () => {
       timeRef.current++;
@@ -163,7 +152,7 @@ export default function CodeMatrixBg() {
           const alpha = 0.05 + intensity * 0.35;
           ctx.fillStyle = `rgba(${r}, ${g}, ${bl}, ${alpha})`;
         } else {
-          ctx.fillStyle = "rgba(27, 42, 74, 0.05)";
+          ctx.fillStyle = "rgba(27, 42, 74, 0.07)";
         }
 
         ctx.fillText(b.char, b.x, b.y);
@@ -197,31 +186,6 @@ export default function CodeMatrixBg() {
         ctx.fillText(line.text, line.x, line.y + yOffset);
       });
 
-      // === LAYER 3: Click ripples ===
-      rippleRef.current = rippleRef.current.filter((r) => {
-        r.radius += 4;
-        r.alpha *= 0.95;
-        if (r.alpha < 0.01) return false;
-
-        // Outer ring
-        ctx.beginPath();
-        ctx.arc(r.x, r.y, r.radius, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(255, 107, 157, ${r.alpha})`;
-        ctx.lineWidth = 2;
-        ctx.stroke();
-
-        // Inner ring
-        if (r.radius > 20) {
-          ctx.beginPath();
-          ctx.arc(r.x, r.y, r.radius * 0.6, 0, Math.PI * 2);
-          ctx.strokeStyle = `rgba(167, 139, 250, ${r.alpha * 0.5})`;
-          ctx.lineWidth = 1;
-          ctx.stroke();
-        }
-
-        return true;
-      });
-
       animRef.current = requestAnimationFrame(draw);
     };
 
@@ -234,7 +198,6 @@ export default function CodeMatrixBg() {
       cancelAnimationFrame(animRef.current);
       window.removeEventListener("resize", init);
       window.removeEventListener("mousemove", handleMouse);
-      window.removeEventListener("click", handleClick);
       resizeObserver.disconnect();
     };
   }, []);
