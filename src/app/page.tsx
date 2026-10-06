@@ -12,7 +12,6 @@ const links = [
   { name: "github", url: "https://github.com/harshitakeer" },
   { name: "twitter", url: "https://twitter.com/harshita" },
   { name: "email", url: "mailto:hkeer@uw.edu" },
-  { name: "resume", url: "/resume.pdf" },
 ];
 
 function Section({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
