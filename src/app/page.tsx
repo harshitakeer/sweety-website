@@ -70,7 +70,7 @@ export default function Home() {
             i like building things that actually help people, and i&apos;m into applied ml research.
           </p>
           <p style={{ fontSize: 18, color: "#122A64", lineHeight: 1.65 }}>
-            this winter, i&apos;ll be an engineering intern at <strong style={{ color: "#122A64", fontWeight: 500 }}>shopify</strong>,
+            this winter, i&apos;ll be an intern engineer at <strong style={{ color: "#122A64", fontWeight: 500 }}>shopify</strong>,
             and this summer i&apos;ll be a software engineering intern at <strong style={{ color: "#122A64", fontWeight: 500 }}>salesforce</strong>.
           </p>
         </Section>

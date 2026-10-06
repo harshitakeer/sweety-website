@@ -60,6 +60,26 @@ export default function CodeMatrixBg() {
       const viewBottom = scrollY + window.innerHeight + 20;
       const mouse = mouseRef.current;
 
+      // Page-space box around the text content; the glow is dimmer inside it
+      // so the text stays readable, fading back to full strength just outside
+      let text: { left: number; top: number; right: number; bottom: number } | null = null;
+      const main = document.querySelector("main");
+      if (main) {
+        for (const child of Array.from(main.children)) {
+          const r = child.getBoundingClientRect();
+          if (r.width === 0 || r.height === 0) continue;
+          const box = { left: r.left, top: r.top + scrollY, right: r.right, bottom: r.bottom + scrollY };
+          text = text
+            ? {
+                left: Math.min(text.left, box.left),
+                top: Math.min(text.top, box.top),
+                right: Math.max(text.right, box.right),
+                bottom: Math.max(text.bottom, box.bottom),
+              }
+            : box;
+        }
+      }
+
       // Static binary grid with cursor glow
       ctx.font = '11px "JetBrains Mono", "SF Mono", "Fira Code", monospace';
       ctx.textBaseline = "top";
@@ -84,7 +104,14 @@ export default function CodeMatrixBg() {
           const r = Math.round(28 * t + 17 * (1 - t));
           const g = Math.round(58 * t + 17 * (1 - t));
           const bl = Math.round(150 * t + 17 * (1 - t));
-          const alpha = 0.1 + intensity * 0.55;
+          let glowStrength = 0.55;
+          if (text) {
+            const ox = Math.max(text.left - b.x, 0, b.x - text.right);
+            const oy = Math.max(text.top - b.y, 0, b.y - text.bottom);
+            const outside = Math.min(Math.hypot(ox, oy) / 40, 1);
+            glowStrength = 0.2 + 0.35 * outside;
+          }
+          const alpha = 0.1 + intensity * glowStrength;
           ctx.fillStyle = `rgba(${r}, ${g}, ${bl}, ${alpha})`;
         } else {
           ctx.fillStyle = "rgba(17, 17, 17, 0.08)";
