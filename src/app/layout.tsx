@@ -1,11 +1,21 @@
 import type { Metadata } from "next";
-import { DM_Sans, JetBrains_Mono } from "next/font/google";
+import { Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const dmSans = DM_Sans({
-  variable: "--font-dm",
+// Satoshi from Fontshare (not on Google Fonts), self-hosted
+const satoshi = localFont({
+  variable: "--font-satoshi",
+  src: [
+    { path: "./fonts/Satoshi-Regular.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/Satoshi-Medium.woff2", weight: "500", style: "normal" },
+  ],
+});
+
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-serif",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: "400",
 });
 
 const jetbrains = JetBrains_Mono({
@@ -27,8 +37,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${jetbrains.variable} antialiased`}>
-      <body style={{ minHeight: "100vh", background: "#FFF8F0", fontFamily: "var(--font-dm), system-ui, sans-serif" }}>
+    <html lang="en" className={`${satoshi.variable} ${instrumentSerif.variable} ${jetbrains.variable} antialiased`}>
+      <body style={{ minHeight: "100vh", background: "#FFFFFF", fontFamily: "var(--font-satoshi), system-ui, sans-serif" }}>
         {children}
       </body>
     </html>

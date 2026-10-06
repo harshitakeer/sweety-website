@@ -16,17 +16,17 @@ html {
 }
 
 body {
-  background: #FFF8F0;
-  color: #1B2A4A;
+  background: #FFFFFF;
+  color: #122A64;
   overflow-x: hidden;
 }
 
 ::selection {
-  background: rgba(255, 107, 157, 0.15);
-  color: #1B2A4A;
+  background: rgba(18, 42, 100, 0.15);
+  color: #122A64;
 }
 
 a:hover {
-  text-decoration-color: #FF6B9D !important;
-  color: #FF6B9D !important;
+  text-decoration-color: #24459A !important;
+  color: #24459A !important;
 }
