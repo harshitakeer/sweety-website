@@ -66,7 +66,7 @@ export default function Home() {
         <Section delay={0.1}>
           <p style={{ fontSize: 18, color: "#122A64", lineHeight: 1.65, marginBottom: 16 }}>
             i&apos;m a second year cs student at the <strong style={{ color: "#122A64", fontWeight: 500 }}>university of washington</strong>.
-            i like building things that actually help people, and i&apos;m into applied ml research.
+            i like building things that help people, and i&apos;m into applied ml research.
           </p>
           <p style={{ fontSize: 18, color: "#122A64", lineHeight: 1.65 }}>
             this winter, i&apos;ll be an intern engineer at <strong style={{ color: "#122A64", fontWeight: 500 }}>shopify</strong>,
