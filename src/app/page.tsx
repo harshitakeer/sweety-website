@@ -10,7 +10,7 @@ const CodeMatrixBg = dynamic(() => import("@/components/CodeMatrixBg"), { ssr: f
 const links = [
   { name: "linkedin", url: "https://linkedin.com/in/harshita-keerthipati" },
   { name: "github", url: "https://github.com/harshitakeer" },
-  { name: "twitter", url: "https://twitter.com/harshita" },
+  { name: "twitter", url: "https://x.com/harsh1tak" },
   { name: "email", url: "mailto:hkeer@uw.edu" },
 ];
 

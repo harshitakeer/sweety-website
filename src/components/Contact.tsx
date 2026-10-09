@@ -6,7 +6,7 @@ import SubtleBg from "./SubtleBg";
 const links = [
   { name: "github", url: "https://github.com/harshita" },
   { name: "linkedin", url: "https://linkedin.com/in/harshita" },
-  { name: "twitter", url: "https://twitter.com/harshita" },
+  { name: "twitter", url: "https://x.com/harsh1tak" },
   { name: "email", url: "mailto:hello@harshita.dev" },
 ];
 
